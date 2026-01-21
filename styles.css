@@ -80,7 +80,7 @@ nav ul li a:hover {
     position: relative;
     overflow: hidden;
     border-radius: 0px;
-    background: rgba(56, 15, 15, 0.7);
+    background: rgba(196, 193, 193, 0.7);
 }
 
 /* SLIDES */
@@ -190,7 +190,7 @@ nav ul li a:hover {
 }
 
 .btn-seta:hover {
-    background: rgba(190, 11, 11, 0.3);
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .btn-seta svg {
@@ -263,7 +263,7 @@ nav ul li a:hover {
     
     .conteudo-principal {
         
-        margin-top: 100px;
+        margin-top: 83px;
         padding: 0 0% 0px;
     }
     
@@ -343,8 +343,8 @@ nav ul li a:hover {
 /* 2. CELULARES MÉDIOS (481px - 600px) */
 @media (min-width: 481px) and (max-width: 600px) {
     .conteudo-principal {
-        margin-top: 110px;
-        padding: 0 5% 70px;
+        margin-top: 85px;
+        padding: 0% 0px;
     }
     
     .carrossel-container {
@@ -452,7 +452,7 @@ nav ul li a:hover {
 
     .conteudo-principal{
         margin-top: 1px;
-        padding: 0% 0px;
+        padding: 6% 0px;
         
         }
 
