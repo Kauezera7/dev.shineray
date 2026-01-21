@@ -1,267 +1,606 @@
+/* RESET E CONFIGURAÇÕES GERAIS */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    list-style: none;
-    font-family: "Montserrat", sans-serif;
-
 }
 
 body {
-    background-color: #0f0f1e;
-    color: #ffffff;
-    font-size: 16px;
-    overflow: hidden;
+    font-family: "Montserrat", sans-serif;
+    background-color: #0a0a0f;
+    color: white;
+    overflow-x: hidden;
 }
 
+/* HEADER RESPONSIVO */
 header {
     position: fixed;
-    width: 100vw;
     top: 0;
-    padding: 20px 50px;
+    left: 0;
+    width: 100%;
+    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 4;
-
+    z-index: 1000;
+    background: rgba(10, 10, 15, 0.95);
+    border-bottom: 1px solid rgba(190, 11, 11, 0.2);
 }
 
 .logo {
-    /* font-family: "Orbitron", sans-serif; */
-    font-size: 2rem;
-    font-weight: 900;
+    font-family: "Orbitron", sans-serif;
+    font-size: 28px;
+    font-weight: 800;
     color: #be0b0b;
-    text-shadow: 0 0 10px #f8f5f5;
-
+    text-shadow: 0 0 10px rgba(190, 11, 11, 0.5);
 }
 
-header nav ul {
+/* MENU RESPONSIVO */
+nav ul {
     display: flex;
-    gap: 40px;
-
+    list-style: none;
+    gap: 30px;
 }
 
-header nav ul li {
-    cursor: pointer;
-    position: relative;
-    padding: 5px 0;
-
-
-}
-
-header nav ul li::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: #990d0d;
-}
-
-header nav ul li:hover::after {
-    width: 100%;
-    transition: width 0.3s ease-in-out;
-}
-
-header nav ul li a {
+nav ul li a {
+    color: white;
     text-decoration: none;
-    color: #ffffff;
     font-weight: 500;
-    font-size: 1rem;
-    transition: color 0.3s ease-in-out;
+    transition: color 0.3s;
 }
 
+nav ul li a:hover {
+    color: #be0b0b;
+}
+
+/* CONTEÚDO PRINCIPAL */
 .conteudo-principal {
-    height: 100vh;
+    min-height: 100vh;
+    padding: 100px 5% 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    background: linear-gradient(135deg, #000000 0%, #520202 100%);
-    overflow: hidden;
 }
 
-.conteudo-principal::before {
-    content: "";
-    width: 500px;
+/* CONTAINER DO CARROSSEL */
+.carrossel-container {
+    width: 100%;
+    max-width: 1200px;
     height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 70%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    filter: blur(50px);
-    z-index: 1;
-    animation: pulse 3s infinite alternate;
-}
-
-@keyframes pulse {
-    0% {
-        opacity: 0.5;
-        transform: translate(-50%, -50%) scale(0.8);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(1.5);
-    }
-
-}
-
-.lista {
-    width: 80%;
-    height: 100%;
-    margin: 0 auto;
     position: relative;
 }
 
-.item {
+.slides-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background: rgba(20, 20, 30, 0.7);
+}
+
+/* SLIDES */
+.slide {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.slide.active {
     display: flex;
-    justify-content: center;
+}
+
+.slide-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
     align-items: center;
-    opacity: 0;
-
+    padding: 30px;
 }
 
-.active {
-    opacity: 1;
-}
-
+/* IMAGEM */
 .imagem-produto {
-    width: 40%;
-    height: 100%;
+    flex: 1;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
+    padding: 20px;
 }
 
-.imagem-produto img {
-    max-width: 80%;
-    max-height: 60%;
-    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
+.moto-img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
 }
 
+/* DETALHES */
 .detalhes-produto {
-    width: 55%;
-    padding-right: 80px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    z-index: 2;
-    flex-direction: column;
-
-
+    flex: 1;
+    padding: 20px;
 }
 
 .tag-promo {
-    font-size: 1rem;
-    text-transform: uppercase;
-    color: #990d0d;
-    font-weight: 600;
-    letter-spacing: 2px;
+    color: #be0b0b;
+    font-weight: bold;
+    font-size: 14px;
     margin-bottom: 10px;
-
+    text-transform: uppercase;
 }
 
 .nome-moto {
-    font-size: 4.5rem;
     font-family: "Orbitron", sans-serif;
-    line-height: 1.2;
+    font-size: 36px;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .descricao-produto {
-    font-size: 1.1rem;
-    color: #dddddd;
+    color: #ccc;
     line-height: 1.6;
-    margin-bottom: 30px;
-    max-width: 600px;
+    margin-bottom: 25px;
 }
 
+/* BOTÃO */
 .btn {
-    padding: 12px 10px;
-    background: linear-gradient(90deg, #990d0d, #000000);
-    border-radius: 30px;
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
+    background: linear-gradient(90deg, #be0b0b, #990d0d);
+    color: white;
     border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s;
 }
 
 .btn:hover {
-    background: linear-gradient(90deg, #be0b0b, #1a0000);
-    transition: background 0.3s ease-in-out;
+    transform: scale(1.05);
 }
 
-.setas {
+/* CONTROLES */
+.controles {
     position: absolute;
-    width: 90%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
     display: flex;
     justify-content: space-between;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-
+    padding: 0 15px;
+    z-index: 10;
 }
 
 .btn-seta {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.26);
-    border: 1px solid rgb(255, 255, 255, 0.26);
+    transition: background 0.3s;
 }
 
 .btn-seta:hover {
-    background-color: rgba(235, 8, 8, 0.1);
-    border: 1px solid rgba(218, 6, 6, 0.3);
-
+    background: rgba(190, 11, 11, 0.3);
 }
 
-.incicatores {
+.btn-seta svg {
+    fill: white;
+    width: 20px;
+    height: 20px;
+}
+
+/* INDICADORES */
+.indicadores {
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 10px;
-    z-index: 5;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 20px;
 }
 
-.numeros {
+.contador {
     font-family: "Orbitron", sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.2);
-
-
+    font-size: 20px;
+    color: #be0b0b;
 }
 
-.pontos {
+.dots-container {
     display: flex;
     gap: 10px;
-
 }
 
 .dot {
-    width: 40px;
-    height: 4px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-
-
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
 }
 
 .dot.active {
-    width: 60px;
-    background-color: #be0b0b;
-    box-shadow: 0 0 10px #f8f5f5;
+    background: #be0b0b;
+}
+
+/* ============================================
+   RESPONSIVIDADE PARA TODOS OS DISPOSITIVOS
+   ============================================ */
+
+/* 1. CELULARES PEQUENOS (até 480px) */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px 5%;
+    }
+    
+    .logo {
+        font-size: 22px;
+    }
+    
+    nav ul {
+        gap: 15px;
+    }
+    
+    nav ul li a {
+        font-size: 14px;
+    }
+    
+    .conteudo-principal {
+        padding: 120px 5% 60px;
+    }
+    
+    .carrossel-container {
+        height: 400px;
+    }
+    
+    .slide-content {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .imagem-produto {
+        height: 40%;
+        padding: 10px;
+    }
+    
+    .moto-img {
+        max-height: 150px;
+    }
+    
+    .detalhes-produto {
+        height: 60%;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    .nome-moto {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    
+    .descricao-produto {
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+    
+    .btn {
+        padding: 10px 25px;
+        font-size: 14px;
+    }
+    
+    .controles {
+        padding: 0 5px;
+    }
+    
+    .btn-seta {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .btn-seta svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .indicadores {
+        bottom: 15px;
+        padding: 8px 15px;
+        gap: 15px;
+    }
+    
+    .contador {
+        font-size: 16px;
+    }
+    
+    .dots-container {
+        gap: 8px;
+    }
+    
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* 2. CELULARES MÉDIOS (481px - 600px) */
+@media (min-width: 481px) and (max-width: 600px) {
+    .conteudo-principal {
+        padding: 110px 5% 70px;
+    }
+    
+    .carrossel-container {
+        height: 420px;
+    }
+    
+    .slide-content {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .imagem-produto {
+        height: 45%;
+    }
+    
+    .moto-img {
+        max-height: 180px;
+    }
+    
+    .detalhes-produto {
+        height: 55%;
+        text-align: center;
+    }
+    
+    .nome-moto {
+        font-size: 26px;
+    }
+    
+    .descricao-produto {
+        font-size: 14px;
+    }
+}
+
+/* 3. CELULARES GRANDES (601px - 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+    .carrossel-container {
+        height: 450px;
+    }
+    
+    .slide-content {
+        flex-direction: column;
+        padding: 25px;
+    }
+    
+    .imagem-produto {
+        height: 50%;
+    }
+    
+    .moto-img {
+        max-height: 220px;
+    }
+    
+    .detalhes-produto {
+        height: 50%;
+        text-align: center;
+    }
+    
+    .nome-moto {
+        font-size: 30px;
+    }
+}
+
+/* 4. TABLETS (769px - 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .carrossel-container {
+        height: 480px;
+        max-width: 900px;
+    }
+    
+    .slide-content {
+        padding: 30px;
+    }
+    
+    .moto-img {
+        max-height: 250px;
+    }
+    
+    .nome-moto {
+        font-size: 32px;
+    }
+    
+    .descricao-produto {
+        font-size: 15px;
+    }
+}
+
+/* 5. TABLETS GRANDES (993px - 1200px) */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .carrossel-container {
+        height: 500px;
+        max-width: 1100px;
+    }
+    
+    .moto-img {
+        max-height: 280px;
+    }
+    
+    .nome-moto {
+        font-size: 34px;
+    }
+}
+
+/* 6. DESKTOP (1201px em diante) */
+@media (min-width: 1201px) {
+    .carrossel-container {
+        height: 550px;
+        max-width: 1200px;
+    }
+    
+    .moto-img {
+        max-height: 320px;
+    }
+    
+    .nome-moto {
+        font-size: 36px;
+    }
+}
+
+/* 7. ORIENTAÇÃO PAISAGEM - CELULAR */
+@media (max-height: 500px) and (orientation: landscape) {
+    header {
+        padding: 10px 5%;
+    }
+    
+    .conteudo-principal {
+        padding: 80px 5% 40px;
+    }
+    
+    .carrossel-container {
+        height: 300px;
+    }
+    
+    .slide-content {
+        flex-direction: row;
+        padding: 15px;
+    }
+    
+    .imagem-produto {
+        height: 100%;
+        flex: 0.8;
+    }
+    
+    .moto-img {
+        max-height: 200px;
+    }
+    
+    .detalhes-produto {
+        height: 100%;
+        flex: 1.2;
+        padding: 10px;
+    }
+    
+    .nome-moto {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .descricao-produto {
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .btn {
+        padding: 8px 20px;
+        font-size: 12px;
+    }
+}
+
+/* 8. TELAS MUITO GRANDES (4K) */
+@media (min-width: 2000px) {
+    .carrossel-container {
+        max-width: 1600px;
+        height: 700px;
+    }
+    
+    .moto-img {
+        max-height: 400px;
+    }
+    
+    .nome-moto {
+        font-size: 48px;
+    }
+    
+    .descricao-produto {
+        font-size: 18px;
+    }
+    
+    .btn {
+        padding: 15px 40px;
+        font-size: 18px;
+    }
+}
+
+/* 9. AJUSTES PARA DISPOSITIVOS COM TELA PEQUENA */
+@media (max-width: 350px) {
+    .logo {
+        font-size: 18px;
+    }
+    
+    nav ul {
+        gap: 10px;
+    }
+    
+    nav ul li a {
+        font-size: 12px;
+    }
+    
+    .nome-moto {
+        font-size: 18px;
+    }
+    
+    .descricao-produto {
+        font-size: 12px;
+    }
+    
+    .btn {
+        padding: 8px 20px;
+        font-size: 12px;
+    }
+}
+
+/* 10. DISPOSITIVOS COM ALTA DENSIDADE DE PIXELS */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .logo {
+        text-shadow: 0 0 15px rgba(190, 11, 11, 0.7);
+    }
+    
+    .btn {
+        box-shadow: 0 4px 15px rgba(190, 11, 11, 0.3);
+    }
+}
+
+/* Garantir que o conteúdo não fique muito apertado */
+.slide-content {
+    box-sizing: border-box;
+}
+
+/* Evitar que texto quebre de forma estranha */
+.nome-moto, .descricao-produto {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Melhorar legibilidade em telas pequenas */
+@media (max-width: 768px) {
+    .descricao-produto br {
+        display: none; /* Remove quebras de linha em mobile */
+    }
+    
+    .descricao-produto {
+        display: block;
+    }
+}
+
+/* Ajuste para quando o teclado virtual aparece em mobile */
+@media (max-height: 400px) {
+    .conteudo-principal {
+        padding-top: 70px;
+        padding-bottom: 30px;
+    }
+    
+    .carrossel-container {
+        height: 250px;
+    }
 }

@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-
     <title>Shineray Curitiba</title>
 </head>
-
 <body>
     <header>
-        <div class="logo">Shineray</div>
-        <!-- colocar a imagem aqui -->
-
+        <div class="logo">SHINERAY</div>
         <nav>
             <ul>
-                <li><a href="inicio">Início</a></li>
-                <li><a href="catalogo">Catálogo</a></li>
-                <li><a href="contato">Contato</a></li>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="conteudo-principal">
-        <!-- círculos do fundo -->
         <div class="circulos-fundo">
             <div class="circulo"></div>
             <div class="circulo"></div>
@@ -37,124 +29,140 @@
             <div class="circulo"></div>
         </div>
 
-        <!-- lista de produtos -->
-        <div class="lista">
-
-            <!-- ITEM 1 -->
-            <div class="item active">
-                <div class="imagem-produto">
-                    <img src="./img/250F.webp" alt="Shineray 250F">
+        <div class="carrossel-container">
+            <div class="slides-wrapper">
+                <!-- SLIDE 1 -->
+                <div class="slide active">
+                    <div class="slide-content">
+                        <div class="imagem-produto">
+                            <picture>
+                                <!-- Use a smaller image for mobile devices -->
+                                <source media="(max-width: 768px)" srcset="img/250F.webp">
+                                <img src="img/250F.webp" alt="Shineray 250F" class="moto-img">
+                            </picture>
+                        </div>
+                        <div class="detalhes-produto">
+                            <p class="tag-promo">DESTAQUE</p>
+                            <h1 class="nome-moto">SHINERAY 250F</h1>
+                            <p class="descricao-produto">
+                                Motor: 248,9 cc, 4 tempos, monocilíndrico<br>
+                                Potência: 27,9 cv<br>
+                                Transmissão: Manual de 6 velocidades<br>
+                                Freios: Disco dianteiro e traseiro<br>
+                                Preço: <strong>R$ 22.500,00</strong>
+                            </p>
+                            <button class="btn">SAIBA MAIS</button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="detalhes-produto">
-                    <p class="tag-promo">Promoção</p>
-                    <p class="nome-moto">250F</p>
-                    <p class="descricao-produto">
-                        Motor: 248,9 cc, 4 tempos, monocilíndrico |<br>
-                        Potência: 27,9 cv |<br>
-                        Transmissão: Manual de 6 velocidades |<br>
-                        Freios: Disco dianteiro e traseiro |<br>
-                        Suspensão: Garfo telescópico invertido dianteiro e monoamortecedor traseiro |<br>
-                        Preço: R$ 22.500,00
-                    </p>
-                    <button class="btn">Saiba Mais</button>
+                <!-- SLIDE 2 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="imagem-produto">
+                            <picture>
+                                <!-- Use a smaller image for mobile devices -->
+                                <source media="(max-width: 768px)" srcset="img/URBAN-150-EFI.webp">
+                                <img src="img/URBAN-150-EFI.webp" alt="Shineray Urban 150 EFI" class="moto-img">
+                            </picture>
+                        </div>
+                        <div class="detalhes-produto">
+                            <p class="tag-promo">ECONÔMICA</p>
+                            <h1 class="nome-moto">URBAN 150 EFI</h1>
+                            <p class="descricao-produto">
+                                Motor: 149 cc, 4 tempos, injeção eletrônica<br>
+                                Potência: 12,9 cv<br>
+                                Transmissão: Manual de 5 velocidades<br>
+                                Consumo: 40 km/l<br>
+                                Preço: <strong>R$ 20.990,00</strong>
+                            </p>
+                            <button class="btn">SAIBA MAIS</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 3 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="imagem-produto">
+                            <picture>
+                                <!-- Use a smaller image for mobile devices -->
+                                <source media="(max-width: 768px)" srcset="img/Storm.webp">
+                                <img src="img/Storm.webp" alt="Shineray Storm 200 EFI" class="moto-img">
+                            </picture>
+                        </div>
+                        <div class="detalhes-produto">
+                            <p class="tag-promo">ESPORTIVA</p>
+                            <h1 class="nome-moto">STORM 200 EFI</h1>
+                            <p class="descricao-produto">
+                                Motor: 198 cc, 4 tempos, injeção eletrônica<br>
+                                Potência: 19 cv<br>
+                                Transmissão: Manual de 6 velocidades<br>
+                                ABS: Dianteiro e traseiro<br>
+                                Preço: <strong>R$ 18.990,00</strong>
+                            </p>
+                            <button class="btn">SAIBA MAIS</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 4 -->
+                <div class="slide">
+                    <div class="slide-content">
+                        <div class="imagem-produto">
+                            <picture>
+                                <!-- Use a smaller image for mobile devices -->
+                                <source media="(max-width: 768px)" srcset="img/Denver.webp">
+                                <img src="img/Denver.webp" alt="Shineray Denver 250 EFI" class="moto-img">
+                            </picture>
+                        </div>
+                        <div class="detalhes-produto">
+                            <p class="tag-promo">AVENTURA</p>
+                            <h1 class="nome-moto">DENVER 250 EFI</h1>
+                            <p class="descricao-produto">
+                                Motor: 248,9 cc, 4 tempos, injeção eletrônica<br>
+                                Potência: 27,9 cv<br>
+                                Transmissão: Manual de 6 velocidades<br>
+                                ABS: Duplo disco<br>
+                                Preço: <strong>R$ 22.500,00</strong>
+                            </p>
+                            <button class="btn">SAIBA MAIS</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- ITEM 2 -->
-            <div class="item">
-                <div class="imagem-produto">
-                    <img src="img/URBAN-150-EFI.webp" alt="Shineray Urban 150 EFI">
-                </div>
-
-                <div class="detalhes-produto">
-                    <p class="tag-promo">Promoção</p>
-                    <p class="nome-moto">Urban 150 EFI</p>
-                    <p class="descricao-produto">
-                        Motor: 149 cc, 4 tempos, monocilíndrico, injeção eletrônica (EFI) |<br>
-                        Potência: 12,9 cv |<br>
-                        Transmissão: Manual de 5 velocidades |<br>
-                        Freios: Disco dianteiro e tambor traseiro |<br>
-                        Suspensão: Garfo telescópico dianteiro e duplo amortecedor traseiro |<br>
-                        Preço: R$ 20.990,00
-                    </p>
-                    <button class="btn">Saiba Mais</button>
-                </div>
+            <!-- Controles de navegação -->
+            <div class="controles">
+                <button class="btn-seta" id="prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
+                <button class="btn-seta" id="next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </button>
             </div>
 
-            <!-- ITEM 3 -->
-            <div class="item">
-                <div class="imagem-produto">
-                    <img src="img/Storm.webp" alt="Shineray Storm 200 EFI">
+            <!-- Indicadores -->
+            <div class="indicadores">
+                <div class="contador">
+                    <span id="current-slide">01</span>
+                    <span class="separador">/</span>
+                    <span id="total-slides">04</span>
                 </div>
-
-                <div class="detalhes-produto">
-                    <p class="tag-promo">Promoção</p>
-                    <p class="nome-moto">Shineray Storm 200 EFI</p>
-                    <p class="descricao-produto">
-                        Motor: 198 cc, 4 tempos, monocilíndrico, injeção eletrônica (EFI) |<br>
-                        Potência: 19 cv |<br>
-                        Transmissão: Manual de 6 velocidades |<br>
-                        Freios: Disco dianteiro e traseiro |<br>
-                        Suspensão: Garfo telescópico dianteiro e monoamortecedor traseiro |<br>
-                        Preço: R$ 18.990,00
-                    </p>
-                    <button class="btn">Saiba Mais</button>
+                <div class="dots-container">
+                    <button class="dot active" data-slide="0"></button>
+                    <button class="dot" data-slide="1"></button>
+                    <button class="dot" data-slide="2"></button>
+                    <button class="dot" data-slide="3"></button>
                 </div>
             </div>
-
-            <!-- ITEM 4 -->
-            <div class="item">
-                <div class="imagem-produto">
-                    <img src="img/Denver.webp" alt="Shineray Denver 250 EFI">
-                </div>
-
-                <div class="detalhes-produto">
-                    <p class="tag-promo">Promoção</p>
-                    <p class="nome-moto">Shineray Denver 250 EFI</p>
-                    <p class="descricao-produto">
-                        Motor: 248,9 cc, 4 tempos, monocilíndrico, injeção eletrônica (EFI) |<br>
-                        Potência: 27,9 cv |<br>
-                        Transmissão: Manual de 6 velocidades |<br>
-                        Freios: Disco dianteiro e traseiro com ABS |<br>
-                        Suspensão: Garfo telescópico invertido dianteiro e monoamortecedor traseiro |<br>
-                        Preço: R$ 22.500,00
-                    </p>
-                    <button class="btn">Saiba Mais</button>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="setas"> <!-- caso queira mudar cor da seta so colocar no fill=" para cor se quer" -->
-            <button class="btn-seta" id="prev">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
-                    class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-                    <path
-                        d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
-                </svg>
-            </button>
-            <button class="btn-seta" id="next">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                    <path
-                        d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
-                </svg>
-
-            </button>
-
-        </div>
-
-        <div class="incicatores">
-            <div class="numeros"></div>
-            <div class="pontos"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-
         </div>
     </main>
-</body>
 
+    <script src="scripts.js"></script>
+</body>
 </html>
