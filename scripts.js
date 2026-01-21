@@ -1,6 +1,13 @@
-// script.js
+// script.js - VERSÃO CORRIGIDA
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Carrossel inicializando...');
+    console.log('🚀 Carrossel iniciando...');
+    
+    // ================= CONFIGURAÇÃO =================
+    // CONTROLE DO TEMPO AQUI ↓ (em milissegundos)
+    const DESKTOP_DELAY = 5000;    // 5 segundos para desktop
+    const MOBILE_DELAY = 7000;     // 7 segundos para mobile
+    const TABLET_DELAY = 6000;     // 6 segundos para tablet
+    // ================================================
     
     // Elementos
     const slides = document.querySelectorAll('.slide');
@@ -9,167 +16,336 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = document.getElementById('next');
     const currentSlideEl = document.getElementById('current-slide');
     const totalSlidesEl = document.getElementById('total-slides');
+    const carrosselContainer = document.querySelector('.carrossel-container');
     
     // Variáveis
     let currentIndex = 0;
     const totalSlides = slides.length;
-    let autoPlayInterval;
+    let autoPlayInterval = null;
+    let isAutoPlayActive = true;
+    
+    // ================= FUNÇÕES PRINCIPAIS =================
     
     // Inicializar
-    function init() {
-        console.log('Total de slides:', totalSlides);
+    function initCarousel() {
+        console.log(`📊 Total de slides: ${totalSlides}`);
         
-        // Atualizar total
-        totalSlidesEl.textContent = totalSlides.toString().padStart(2, '0');
+        // Atualizar contador total
+        if (totalSlidesEl) {
+            totalSlidesEl.textContent = totalSlides.toString().padStart(2, '0');
+        }
         
         // Mostrar primeiro slide
         showSlide(currentIndex);
         
-        // Event listeners
-        prevBtn.addEventListener('click', prevSlide);
-        nextBtn.addEventListener('click', nextSlide);
+        // Configurar eventos
+        setupEventListeners();
         
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => goToSlide(index));
-        });
+        // Iniciar auto-play
+        startAutoPlay();
         
-        // Teclado
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'ArrowRight') nextSlide();
-        });
-        
-        // Swipe para mobile
-        setupSwipe();
-        
-        // Auto-play ajustado para dispositivo
-        setupAutoPlay();
-        
-        // Ajustar para orientação da tela
-        window.addEventListener('resize', adjustForScreen);
-        adjustForScreen();
+        console.log('✅ Carrossel inicializado com sucesso!');
     }
     
-    // Mostrar slide
+    // Mostrar slide específico
     function showSlide(index) {
-        console.log('Mostrando slide', index + 1);
+        // Validar índice
+        if (index < 0 || index >= totalSlides) return;
         
-        // Esconder todos
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
+        console.log(`▶️ Mostrando slide ${index + 1}/${totalSlides}`);
         
-        // Mostrar atual
+        // Esconder todos os slides
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        
+        // Remover active de todos os dots
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+        
+        // Mostrar slide atual
         slides[index].classList.add('active');
-        dots[index].classList.add('active');
         
-        // Atualizar número
-        currentSlideEl.textContent = (index + 1).toString().padStart(2, '0');
+        // Ativar dot correspondente
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
         
+        // Atualizar contador atual
+        if (currentSlideEl) {
+            currentSlideEl.textContent = (index + 1).toString().padStart(2, '0');
+        }
+        
+        // Atualizar índice atual
         currentIndex = index;
     }
     
     // Próximo slide
     function nextSlide() {
-        let nextIndex = currentIndex + 1;
-        if (nextIndex >= totalSlides) nextIndex = 0;
+        const nextIndex = (currentIndex + 1) % totalSlides;
         showSlide(nextIndex);
-        resetAutoPlay();
     }
     
     // Slide anterior
     function prevSlide() {
-        let prevIndex = currentIndex - 1;
-        if (prevIndex < 0) prevIndex = totalSlides - 1;
+        const prevIndex = (currentIndex - 1 + totalSlides) % totalSlides;
         showSlide(prevIndex);
-        resetAutoPlay();
     }
     
     // Ir para slide específico
     function goToSlide(index) {
         if (index >= 0 && index < totalSlides) {
             showSlide(index);
+            resetAutoPlay(); // Resetar timer quando clicar manualmente
+        }
+    }
+    
+    // ================= CONTROLE DE TEMPO =================
+    
+    // Obter delay baseado no dispositivo
+    function getAutoPlayDelay() {
+        const width = window.innerWidth;
+        
+        if (width <= 480) {
+            console.log('📱 Dispositivo: Celular pequeno');
+            return MOBILE_DELAY;
+        } else if (width <= 768) {
+            console.log('📱 Dispositivo: Celular/Tablet pequeno');
+            return TABLET_DELAY;
+        } else if (width <= 1024) {
+            console.log('💻 Dispositivo: Tablet');
+            return TABLET_DELAY;
+        } else {
+            console.log('🖥️  Dispositivo: Desktop');
+            return DESKTOP_DELAY;
+        }
+    }
+    
+    // Iniciar auto-play
+    function startAutoPlay() {
+        // Se auto-play já está rodando, não fazer nada
+        if (autoPlayInterval !== null) {
+            console.log('⚠️ Auto-play já está ativo');
+            return;
+        }
+        
+        if (!isAutoPlayActive) {
+            console.log('⏸️ Auto-play desativado');
+            return;
+        }
+        
+        const delay = getAutoPlayDelay();
+        console.log(`⏱️ Iniciando auto-play: ${delay/1000} segundos`);
+        
+        autoPlayInterval = setInterval(() => {
+            console.log('🔄 Auto-play: mudando para próximo slide');
+            nextSlide();
+        }, delay);
+    }
+    
+    // Parar auto-play
+    function stopAutoPlay() {
+        if (autoPlayInterval !== null) {
+            console.log('⏸️ Parando auto-play');
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+    
+    // Resetar auto-play
+    function resetAutoPlay() {
+        console.log('🔄 Resetando auto-play');
+        stopAutoPlay();
+        
+        if (isAutoPlayActive) {
+            // Pequeno delay antes de reiniciar
+            setTimeout(() => {
+                startAutoPlay();
+            }, 100);
+        }
+    }
+    
+    // ================= EVENT LISTENERS =================
+    
+    function setupEventListeners() {
+        // Botões de navegação
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('⬅️ Botão anterior clicado');
+                prevSlide();
+                resetAutoPlay();
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('➡️ Botão próximo clicado');
+                nextSlide();
+                resetAutoPlay();
+            });
+        }
+        
+        // Dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log(`• Dot ${index} clicado`);
+                goToSlide(index);
+            });
+        });
+        
+        // Navegação por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                console.log('⌨️ Tecla: Seta esquerda');
+                prevSlide();
+                resetAutoPlay();
+            } else if (e.key === 'ArrowRight') {
+                console.log('⌨️ Tecla: Seta direita');
+                nextSlide();
+                resetAutoPlay();
+            }
+        });
+        
+        // Pausar auto-play no hover (somente desktop)
+        if (carrosselContainer && window.innerWidth > 768) {
+            carrosselContainer.addEventListener('mouseenter', () => {
+                console.log('🐭 Mouse entrou no carrossel');
+                stopAutoPlay();
+            });
+            
+            carrosselContainer.addEventListener('mouseleave', () => {
+                console.log('🐭 Mouse saiu do carrossel');
+                if (isAutoPlayActive) {
+                    startAutoPlay();
+                }
+            });
+        }
+        
+        // Swipe para mobile
+        setupSwipeEvents();
+        
+        // Redimensionamento da janela
+        window.addEventListener('resize', handleResize);
+    }
+    
+    // Swipe para dispositivos touch
+    function setupSwipeEvents() {
+        const slidesWrapper = document.querySelector('.slides-wrapper');
+        if (!slidesWrapper) return;
+        
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const minSwipeDistance = 50;
+        
+        slidesWrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            console.log('👆 Touch iniciado');
+            stopAutoPlay();
+        }, { passive: true });
+        
+        slidesWrapper.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            const distance = touchStartX - touchEndX;
+            
+            if (Math.abs(distance) > minSwipeDistance) {
+                if (distance > 0) {
+                    console.log('👈 Swipe para esquerda');
+                    nextSlide();
+                } else {
+                    console.log('👉 Swipe para direita');
+                    prevSlide();
+                }
+                resetAutoPlay();
+            }
+            
+            // Retomar auto-play depois de 3 segundos
+            setTimeout(() => {
+                if (isAutoPlayActive) {
+                    startAutoPlay();
+                }
+            }, 3000);
+        }, { passive: true });
+    }
+    
+    // Lidar com redimensionamento
+    function handleResize() {
+        console.log(`📐 Janela redimensionada: ${window.innerWidth}px`);
+        
+        // Se o auto-play está ativo, ajustar o timer
+        if (isAutoPlayActive && autoPlayInterval !== null) {
             resetAutoPlay();
         }
     }
     
-    // Configurar swipe para mobile
-    function setupSwipe() {
-        const container = document.querySelector('.slides-wrapper');
-        let startX = 0;
-        let endX = 0;
-        
-        container.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        }, { passive: true });
-        
-        container.addEventListener('touchend', (e) => {
-            endX = e.changedTouches[0].clientX;
-            handleSwipe(startX, endX);
-        }, { passive: true });
+    // ================= INICIALIZAÇÃO =================
+    
+    // Verificar se todos os elementos existem
+    if (slides.length === 0) {
+        console.error('❌ Nenhum slide encontrado!');
+        return;
     }
     
-    function handleSwipe(start, end) {
-        const minSwipe = 50; // Mínimo de pixels para considerar swipe
-        
-        if (start - end > minSwipe) {
-            // Swipe para esquerda = próximo
-            nextSlide();
-        } else if (end - start > minSwipe) {
-            // Swipe para direita = anterior
-            prevSlide();
-        }
+    if (!prevBtn || !nextBtn) {
+        console.error('❌ Botões de navegação não encontrados!');
+        return;
     }
     
-    // Auto-play ajustado por dispositivo
-    function setupAutoPlay() {
-        const isMobile = window.innerWidth <= 768;
-        const delay = isMobile ? 8000 : 8000; // Mais lento em mobile
+    // Iniciar carrossel
+    initCarousel();
+    
+    // Informações de debug no console
+    console.log('===============================');
+    console.log('⚙️  CONFIGURAÇÃO DO CARROSSEL');
+    console.log('===============================');
+    console.log(`🖥️  Desktop: ${DESKTOP_DELAY/1000}s`);
+    console.log(`📱 Mobile: ${MOBILE_DELAY/1000}s`);
+    console.log(`💻 Tablet: ${TABLET_DELAY/1000}s`);
+    console.log(`📊 Total slides: ${totalSlides}`);
+    console.log('===============================');
+    
+    // Opcional: Mostrar tempo atual em um elemento na tela (útil para debug)
+    function showDebugInfo() {
+        const debugDiv = document.createElement('div');
+        debugDiv.id = 'carrossel-debug';
+        debugDiv.style.cssText = `
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #00ff00;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 9999;
+            border: 1px solid #be0b0b;
+            display: none; /* Mude para 'block' para ver */
+        `;
         
-        stopAutoPlay();
-        autoPlayInterval = setInterval(nextSlide, delay);
+        const delay = getAutoPlayDelay();
+        debugDiv.innerHTML = `
+            ⏱️ Slide: ${delay/1000}s<br>
+            📱 Slide: ${currentIndex + 1}/${totalSlides}<br>
+            🖥️ Largura: ${window.innerWidth}px
+        `;
         
-        // Pausar no hover (somente desktop)
-        if (!isMobile) {
-            const container = document.querySelector('.carrossel-container');
-            container.addEventListener('mouseenter', stopAutoPlay);
-            container.addEventListener('mouseleave', () => {
-                autoPlayInterval = setInterval(nextSlide, delay);
-            });
-        }
+        document.body.appendChild(debugDiv);
+        
+        // Atualizar a cada 5 segundos
+        setInterval(() => {
+            const currentDelay = getAutoPlayDelay();
+            debugDiv.innerHTML = `
+                ⏱️ Tempo: ${currentDelay/1000}s<br>
+                📱 Slide: ${currentIndex + 1}/${totalSlides}<br>
+                🖥️ Largura: ${window.innerWidth}px
+            `;
+        }, 5000);
     }
     
-    function stopAutoPlay() {
-        if (autoPlayInterval) {
-            clearInterval(autoPlayInterval);
-        }
-    }
-    
-    function resetAutoPlay() {
-        stopAutoPlay();
-        setupAutoPlay();
-    }
-    
-    // Ajustar para tamanho da tela
-    function adjustForScreen() {
-        const width = window.innerWidth;
-        console.log('Largura da tela:', width, 'px');
-        
-        // Ajustar altura do container
-        const container = document.querySelector('.carrossel-container');
-        if (width <= 480) {
-            container.style.height = '400px';
-        } else if (width <= 768) {
-            container.style.height = '450px';
-        } else {
-            container.style.height = '500px';
-        }
-        
-        // Reconfigurar auto-play se necessário
-        stopAutoPlay();
-        setupAutoPlay();
-    }
-    
-    // Iniciar
-    init();
-    console.log('Carrossel pronto!');
+    // Descomente a linha abaixo para ver informações de debug na tela
+    // showDebugInfo();
 });

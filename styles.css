@@ -56,11 +56,12 @@ nav ul li a:hover {
 /* CONTEÚDO PRINCIPAL */
 .conteudo-principal {
     min-height: 100vh;
-    padding: 100px 5% 80px;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    margin-top: 80px; /* Adicionado para compensar a altura do header */
 }
 
 /* CONTAINER DO CARROSSEL */
@@ -259,7 +260,8 @@ nav ul li a:hover {
     }
     
     .conteudo-principal {
-        padding: 120px 5% 60px;
+        margin-top: 120px;
+        padding: 0 5% 60px;
     }
     
     .carrossel-container {
@@ -338,7 +340,8 @@ nav ul li a:hover {
 /* 2. CELULARES MÉDIOS (481px - 600px) */
 @media (min-width: 481px) and (max-width: 600px) {
     .conteudo-principal {
-        padding: 110px 5% 70px;
+        margin-top: 110px;
+        padding: 0 5% 70px;
     }
     
     .carrossel-container {
@@ -464,7 +467,8 @@ nav ul li a:hover {
     }
     
     .conteudo-principal {
-        padding: 80px 5% 40px;
+        margin-top: 80px;
+        padding: 0 5% 40px;
     }
     
     .carrossel-container {
@@ -596,7 +600,7 @@ nav ul li a:hover {
 /* Ajuste para quando o teclado virtual aparece em mobile */
 @media (max-height: 400px) {
     .conteudo-principal {
-        padding-top: 70px;
+        margin-top: 70px;
         padding-bottom: 30px;
     }
     
