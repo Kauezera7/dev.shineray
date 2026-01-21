@@ -18,7 +18,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 15px 5%;
+    padding: 23px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,13 +55,15 @@ nav ul li a:hover {
 
 /* CONTEÚDO PRINCIPAL */
 .conteudo-principal {
-    min-height: 100vh;
+    min-height: 10vh;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-top: 80px; /* Adicionado para compensar a altura do header */
+    margin-top: 80px;
+    width: 100%;
+     /* Adicionado para compensar a altura do header */
 }
 
 /* CONTAINER DO CARROSSEL */
@@ -77,8 +79,8 @@ nav ul li a:hover {
     height: 100%;
     position: relative;
     overflow: hidden;
-    border-radius: 15px;
-    background: rgba(20, 20, 30, 0.7);
+    border-radius: 0px;
+    background: rgba(56, 15, 15, 0.7);
 }
 
 /* SLIDES */
@@ -260,8 +262,9 @@ nav ul li a:hover {
     }
     
     .conteudo-principal {
-        margin-top: 120px;
-        padding: 0 5% 60px;
+        
+        margin-top: 100px;
+        padding: 0 0% 0px;
     }
     
     .carrossel-container {
@@ -446,6 +449,13 @@ nav ul li a:hover {
 
 /* 6. DESKTOP (1201px em diante) */
 @media (min-width: 1201px) {
+
+    .conteudo-principal{
+        margin-top: 1px;
+        padding: 0% 0px;
+        
+        }
+
     .carrossel-container {
         height: 550px;
         max-width: 1200px;
